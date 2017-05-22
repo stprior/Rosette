@@ -387,13 +387,13 @@ DEF("getFd",obGetFd, 1, 1)
 #ifdef HPUX
     return FIXNUM(((Istream*)ARG(0))->reader->file->__fileL);
 #else
-    return FIXNUM(((Istream*)ARG(0))->reader->file->_file);
+    return FIXNUM(((Istream*)ARG(0))->reader->file->_fileno);
 #endif
   else if (IS_A(ARG(0), Ostream))
 #ifdef HPUX
     return FIXNUM(((Ostream*)ARG(0))->stream->__fileL);
 #else
-    return FIXNUM(((Ostream*)ARG(0))->stream->_file);
+    return FIXNUM(((Ostream*)ARG(0))->stream->_fileno);
 #endif
   else
     return FIXNUM(-1);
