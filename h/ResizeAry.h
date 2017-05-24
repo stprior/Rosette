@@ -31,12 +31,12 @@
 #endif
 
 #include "rosette.h"
+#include <vector>
 
 class ResizeablePtrArray
 {
   protected:
-    void**	array;
-    int		size;
+  std::vector<void*> ptrVec;
 
 public:
     ResizeablePtrArray ();
@@ -53,32 +53,29 @@ public:
 
 inline ResizeablePtrArray::ResizeablePtrArray ()
 {
-    array = 0;
-    size = 0;
 }
 
 inline ResizeablePtrArray::ResizeablePtrArray (int sz)
 {
-    array = new void* [sz];
-    size = sz;
+  ptrVec.resize(sz);
 }
 
 inline int
 ResizeablePtrArray::capacity ()
 {
-    return size;
+  return ptrVec.size();
 }
 
 inline void
 ResizeablePtrArray::resize ()
 {
-    resize(2*size);
+  ptrVec.resize(2*ptrVec.size());
 }
 
 inline void*&
 ResizeablePtrArray::operator [] (int n)
 {
-    return array[n];
+  return ptrVec[n];
 }
 
 #endif

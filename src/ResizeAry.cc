@@ -34,20 +34,13 @@ extern "C" {
 
 ResizeablePtrArray::~ResizeablePtrArray()
 {
-    delete array;
+    
 }
 
 
 void
 ResizeablePtrArray::resize (int newsize)
 {
-    if (newsize == 0) {
-	delete array;
-	array = 0;
-	size = 0;
-	return;
-    }
+  ptrVec.resize(newsize);
 
-    array = (void**) realloc((char*)array, newsize*sizeof(void*));
-    size = newsize;
 }
